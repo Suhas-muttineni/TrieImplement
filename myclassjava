@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 
@@ -73,7 +72,7 @@ class myClass{
 		for(int i=0;i<26;i++) {
 			if(r.cha[i]!=null) {
 				char ch= (char)(i+'a');
-				help(root,e,te+ch);
+				help(root.cha[i],e,te+ch);
 			}
 		}
 		
