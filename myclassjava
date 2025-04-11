@@ -1,0 +1,113 @@
+package trieImplement;
+
+import java.util.*;
+
+class trie{
+    trie cha[];
+    int wc;
+    boolean ene;
+
+    trie(){
+        cha=new trie[26];
+        wc=0;
+        ene=false;
+    }
+}
+
+
+class myClass{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		
+		trie root=new trie();
+		while(n-->0) {
+			int x=sc.nextInt();
+			if(x==1) {
+				String s=sc.next();
+				Insert(root,s);
+			}
+			if(x==2) {
+				String s=sc.next();
+				boolean abs=isExist(root,s);
+				System.out.print(abs);
+			}
+			if(x==3) {
+				List<String> li=new ArrayList<>();
+				help(root,li,"");
+				System.out.print(li);
+			}
+			
+			if(x==4) {
+				List<String> li=new ArrayList<>();
+				String s=sc.next();
+				helper(root,li,s);
+				System.out.print(li);
+			}
+			if(x==5) {
+				int re=sc.nextInt();
+				n+=re;
+			}
+		}
+		
+	}
+	
+	static void Insert(trie r,String s) 
+	{
+		trie root=r;
+		for(char c:s.toCharArray()) {
+			int in= c-'a';
+			if(root.cha[in]==null) {
+				root.cha[in]=new trie();
+				root.wc++;
+				root=root.cha[in];
+			}
+		}
+		root.ene=true;
+	}
+	
+	static boolean isExist(trie r,String s) {
+		trie root=r;
+		for(char c:s.toCharArray()) {
+			int ini=c-'a'; 
+			if(root.cha[ini]==null) return false;
+			
+			root= root.cha[ini];
+		}
+		return root.ene;
+		
+	}
+	
+	static void help(trie r,List<String> e,String te) {
+		if(r.ene==true) e.add(te);
+		trie root=r;
+		
+		for(int i=0;i<26;i++) {
+			if(r.cha[i]!=null) {
+				char ch= (char)(i+'a');
+				help(root,e,te+ch);
+			}
+		}
+		
+	}
+	
+	static void helper(trie r,List<String> li,String te) {
+		trie root=r;
+		for(char ch:te.toCharArray()) {
+			int ii=ch-'a';
+			if(root.cha[ii]==null)
+				return;
+			
+			root=root.cha[ii];
+		}
+		
+		help(root,li,te);
+		
+		
+		
+	}
+	
+	
+    
+	
+}
