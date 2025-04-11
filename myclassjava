@@ -1,18 +1,5 @@
-package trieImplement;
 
 import java.util.*;
-
-class trie{
-    trie cha[];
-    int wc;
-    boolean ene;
-
-    trie(){
-        cha=new trie[26];
-        wc=0;
-        ene=false;
-    }
-}
 
 
 class myClass{
@@ -59,9 +46,10 @@ class myClass{
 			int in= c-'a';
 			if(root.cha[in]==null) {
 				root.cha[in]=new trie();
+			}
 				root.wc++;
 				root=root.cha[in];
-			}
+			
 		}
 		root.ene=true;
 	}
@@ -106,8 +94,17 @@ class myClass{
 		
 		
 	}
-	
-	
-    
-	
+
+}
+
+class trie{
+    trie cha[];
+    int wc;
+    boolean ene;
+
+    trie(){
+        cha=new trie[26];
+        wc=0;
+        ene=false;
+    }
 }
